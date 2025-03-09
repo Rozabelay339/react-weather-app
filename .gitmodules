@@ -1,0 +1,3 @@
+[submodule "react-weather-app"]
+	path = react-weather-app
+	url = git@github.com:Rozabelay339/react-weather-app.git
