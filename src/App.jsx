@@ -1,10 +1,16 @@
 
 import './App.css'
+import DataContainer from './containers/DataContainer'
 
 function App() {
   
 
-  return <h1>Hello </h1>
+  return(<>
+
+    <DataContainer />
+    
+    </>
+  )
 }
 
 export default App
