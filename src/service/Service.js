@@ -1,26 +1,53 @@
 const getWeatherByCity = async (city) => {
   try {
+    console.log("API Key:", import.meta.env.VITE_API_ID);
+
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${import.meta.env.VITE_API_ID}&units=metric`;
     const response = await fetch(url);
     const data = await response.json();
+
+    if (data.cod !== 200) {
+      throw new Error(`API Error: ${data.message}`);
+    }
+
     console.log("Current Weather:", data);
-    return data;
+    return {
+      temperature: data.main.temp,
+      feelsLike: data.main.feels_like,
+      humidity: data.main.humidity,
+      wind: data.wind.speed,
+      pressure: data.main.pressure,
+      city: data.name,
+      country: data.sys.country,
+      weatherDescription: data.weather[0].description,
+      icon: data.weather[0].icon, // Added icon property
+    };
   } catch (error) {
-    console.error("Error fetching weather:", error);
+    console.error("Error fetching weather:", error.message);
+    return null;
   }
 };
+
+
 
 const getWeatherForecast = async (city) => {
   try {
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${import.meta.env.VITE_API_ID}&units=metric`;
     const response = await fetch(url);
     const data = await response.json();
-    console.log("Weather Forecast:", data);
+
+    if (data.cod !== '200') {
+      throw new Error(`API Error: ${data.message}`);
+    }
+
+    // Pass the forecast data with correct format
     return data;
   } catch (error) {
     console.error("Error fetching forecast:", error);
+    return null;
   }
 };
+
 
 const getWeatherByLocation = async (lat, lon) => {
   try {
@@ -31,9 +58,9 @@ const getWeatherByLocation = async (lat, lon) => {
     return data;
   } catch (error) {
     console.error("Geolocation error:", error);
+    return null;
   }
 };
-
 
 const fetchGeolocation = async () => {
   if (!navigator.geolocation) {

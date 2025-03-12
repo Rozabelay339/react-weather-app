@@ -1,17 +1,21 @@
-import styles from './Search.module.css'
 import { useRef } from 'react';
+import styles from './Search.module.css';
 
 const Search = ({ setCurrentCity }) => {
-  const textVal = useRef();  // Correct useRef syntax
+  const textVal = useRef();
 
-  const handleClick = () => {
-    setCurrentCity(textVal.current.value);  // Update city when search button is clicked
+  const handleOnChange = () => {
+    setCurrentCity(textVal.current.value);
   };
 
   return (
     <div className={styles.search}>
-      <input type="text" ref={textVal} placeholder="Enter city" />
-      <button onClick={handleClick}>Search</button>
+      <input
+        type="text"
+        ref={textVal}
+        placeholder="Search for city"
+      />
+      <button onClick={handleOnChange}>Search</button>
     </div>
   );
 };

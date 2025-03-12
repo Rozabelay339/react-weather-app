@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { getWeatherByCity, getWeatherForecast, fetchGeolocation } from '../service/Service';
 import Search from '../components/Search/Search';
-import WeatherNow from '../components/WeatherNow/WeatherNow';
+import CurrentWeather from '../components/CurrentWeather/CurrentWeather';
 import FavoritePlace from '../components/FavoritePlace/FavoritePlace';
 import Forecast from '../components/Forecast/Forecast';
+
 
 const DataContainer = () => {
   const [currentCity, setCurrentCity] = useState('Stockholm');
@@ -35,9 +36,9 @@ const DataContainer = () => {
   return (
     <>
       <Search setCurrentCity={setCurrentCity} />
-      <WeatherNow data={weatherData} />
+      <CurrentWeather data={weatherData} />
       <Forecast data={forecastData} />
-      <FavoritePlace />
+      <FavoritePlace favoriteCities={['Stockholm', 'Oslo', 'Copenhagen']} setCurrentCity={setCurrentCity} />
     </>
   );
 };
