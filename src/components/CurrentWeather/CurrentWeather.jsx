@@ -20,9 +20,12 @@ const CurrentWeather = ({ data }) => {
         />
       )}
       <h2>{data.city}, {data.country}</h2>
-      <p>{data.temperature}°C</p>
-      <p>Feels Like: {data.feelsLike}°C</p>
-      <p>Wind: {data.wind} m/s</p>
+      <h3>Current Weather</h3>
+      <div className={styles.tempContainer}>
+        <h3 className={styles.temp}>{data.temperature}°C</h3>
+        <p className={styles.feels}>Feels Like: {data.feelsLike}°C</p>
+      </div>
+      <p>Wind: {data.wind.speed} m/s, {data.wind.deg}°</p>
       <p>Humidity: {data.humidity}%</p>
       <p>Pressure: {data.pressure} hPa</p>
       <p>Condition: {data.weatherDescription}</p>
