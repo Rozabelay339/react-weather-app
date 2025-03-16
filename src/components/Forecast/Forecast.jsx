@@ -5,13 +5,29 @@ const Forecast = ({ data }) => {
     return <p>No forecast data available.</p>;
   }
 
+  // Group forecasts by date (filtering for one entry per day)
+  const dailyForecast = [];
+  const seenDates = new Set();
+
+  for (const forecast of data.list) {
+    const date = new Date(forecast.dt * 1000).toLocaleDateString();
+
+    if (!seenDates.has(date)) {
+      seenDates.add(date);
+      dailyForecast.push(forecast);
+    }
+
+    // Stop after collecting 5 days
+    if (dailyForecast.length === 5) break;
+  }
+
   return (
     <div className={styles.container}>
       <h2>5-Day Forecast</h2>
       <div className={styles.forecastGrid}>
-        {data.list.slice(0, 5).map((day, index) => {
+        {dailyForecast.map((day, index) => {
           const iconCode = day.weather[0].icon;
-          const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`; // URL for 2x resolution icon
+          const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
           return (
             <div key={index} className={styles.forecastItem}>

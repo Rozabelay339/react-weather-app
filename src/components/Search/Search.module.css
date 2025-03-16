@@ -1,5 +1,5 @@
 .search{
- 
+
     height: 50px;
     width: 525px;
     margin: 0px auto;
@@ -11,5 +11,11 @@
     border: 1px solid #ccc;
     padding: 0.5rem;
     width: calc(100% - 120px); 
+    border-radius: 10px;
+  }
+
+  .search button {
+    background-color: #aad4e9;
+    border: 1px solid #ccc;
     border-radius: 10px;
   }
