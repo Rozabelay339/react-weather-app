@@ -5,7 +5,6 @@ const CurrentWeather = ({ data }) => {
     return <p>Loading weather...</p>;
   }
 
-  // Build the icon URL using the icon code
   const iconUrl = data.icon 
     ? `https://openweathermap.org/img/wn/${data.icon}@2x.png`
     : '';
@@ -13,11 +12,7 @@ const CurrentWeather = ({ data }) => {
   return (
     <div className={styles.container}>
       {iconUrl && (
-        <img 
-          src={iconUrl} 
-          alt={data.weatherDescription} 
-          className={styles.weatherIcon} 
-        />
+        <img src={iconUrl} alt={data.weatherDescription} className={styles.weatherIcon} />
       )}
       <h2>{data.city}, {data.country}</h2>
       <h3>Current Weather</h3>

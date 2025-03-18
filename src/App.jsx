@@ -1,9 +1,8 @@
 
 import './App.css'
-import DataContainer from './containers/DataContainer'
+import DataContainer from './Containers/dataContainer'
 
 function App() {
-  
 
   return(<>
 
