@@ -17,7 +17,6 @@ const Forecast = ({ data }) => {
       dailyForecast.push(forecast);
     }
 
-    // Stop after collecting 5 days
     if (dailyForecast.length === 5) break;
   }
 
