@@ -1,7 +1,6 @@
 import styles from './FavoritePlaces.module.css';
 import { FaHeart, FaTrash } from 'react-icons/fa';
-
-const FavoritePlaces = ({ favorites, setCity, removeFavorite }) => {
+const FavoritePlaces = ({ favorites, setCity, removeFavorite, addFavorite }) => {
   return (
     <div className={styles.container}>
       <h2>Favorite Places</h2>
@@ -19,6 +18,9 @@ const FavoritePlaces = ({ favorites, setCity, removeFavorite }) => {
           </div>
         ))
       )}
+      <button onClick={addFavorite} className={styles.saveButton}>
+        Save as Favorite
+      </button>
     </div>
   );
 };

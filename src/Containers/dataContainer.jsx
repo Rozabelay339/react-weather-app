@@ -11,7 +11,6 @@ const DataContainer = () => {
   const [forecastData, setForecastData] = useState(null);
   const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) || []);
 
-  // Fetch weather by city
   useEffect(() => {
     const fetchCityWeather = async () => {
       const weather = await getWeatherByCity(currentCity);
@@ -23,7 +22,6 @@ const DataContainer = () => {
     fetchCityWeather();
   }, [currentCity]);
 
-  // Function to save a city as a favorite
   const addFavorite = () => {
     if (!favorites.includes(currentCity)) {
       const updatedFavorites = [...favorites, currentCity];
@@ -32,14 +30,12 @@ const DataContainer = () => {
     }
   };
 
-  // Function to remove a favorite city
   const removeFavorite = (cityToRemove) => {
     const updatedFavorites = favorites.filter((city) => city !== cityToRemove);
     setFavorites(updatedFavorites);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
 
-  // Fetch weather by geolocation on first load
   useEffect(() => {
     const loadGeolocationWeather = async () => {
       const locationWeather = await fetchGeolocation();
@@ -52,10 +48,16 @@ const DataContainer = () => {
   return (
     <>
       <Search setCurrentCity={setCurrentCity} />
-      <CurrentWeather data={weatherData} />
+      <div className="flex-container">
+        <FavoritePlaces 
+          setCity={setCurrentCity} 
+          favorites={favorites} 
+          removeFavorite={removeFavorite} 
+          addFavorite={addFavorite} 
+        />
+        <CurrentWeather data={weatherData} />
+      </div>
       <Forecast data={forecastData} />
-      <button onClick={addFavorite}>Save as Favorite</button>
-      <FavoritePlaces setCity={setCurrentCity} favorites={favorites} removeFavorite={removeFavorite} />
     </>
   );
 };

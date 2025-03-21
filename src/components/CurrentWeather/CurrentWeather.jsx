@@ -5,7 +5,7 @@ const CurrentWeather = ({ data }) => {
     return <p>Loading weather...</p>;
   }
 
-  const iconUrl = data.icon 
+  const iconUrl = data.icon
     ? `https://openweathermap.org/img/wn/${data.icon}@2x.png`
     : '';
 
@@ -24,7 +24,6 @@ const CurrentWeather = ({ data }) => {
       <p>Humidity: {data.humidity}%</p>
       <p>Pressure: {data.pressure} hPa</p>
       <p>Condition: {data.weatherDescription}</p>
-      
     </div>
   );
 };
