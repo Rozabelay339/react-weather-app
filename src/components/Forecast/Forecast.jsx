@@ -19,6 +19,7 @@ const Forecast = ({ data }) => {
 
     if (dailyForecast.length === 5) break;
   }
+  
 
   return (
     <div className={styles.container}>
